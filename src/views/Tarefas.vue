@@ -1,16 +1,35 @@
 <template>
   <div>
+    <v-col
+      cols="12"
+      sm="6"
+    >
+      <v-text-field
+        v-model="campoInput"
+        label="Criar uma nota..."
+        outlined
+        clearable
+        @keyup.enter="handleAddTarefa"
+      ></v-text-field>
+    </v-col>
+
     <v-list
         flat
         subheader
       >
         <!-- <v-subheader>General</v-subheader> -->
         <v-list-item-group
-          v-model="settings"
           multiple
           active-class=""
         >
-        <Tarefa />
+        <div
+        v-for="tarefa, index in $store.state.tarefas"
+        :key="index"
+        >
+          <Tarefa
+          :tarefa="tarefa"
+           />
+        </div>
 
         </v-list-item-group>
       </v-list>
@@ -26,5 +45,16 @@
     components: {
       Tarefa
     },
+    data() {
+      return{
+        campoInput: null
+      }
+    },
+    methods: {
+      handleAddTarefa() {
+        this.$store.commit('adicionaTarefa', this.campoInput)
+        this.campoInput = null;
+      }
+    }
   }
 </script>
