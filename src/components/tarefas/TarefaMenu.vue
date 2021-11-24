@@ -22,7 +22,10 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <ModalEditar />
+    <ModalEditar 
+    v-if="items[0].modal"
+    @fechaModal="items[0].modal = false"
+    />
   </div>
 </template>
 
@@ -39,8 +42,10 @@ export default {
         { 
           icon:'mdi-pencil', 
           title: 'Editar',
+          modal: false,
           click() {
             console.log('Editar')
+            this.modal = true
           }
         },
         { 
@@ -51,7 +56,7 @@ export default {
           }
         },
       ],
-    }),
+    })
 }
 </script>
 
