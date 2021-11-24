@@ -34,14 +34,14 @@
           <v-btn
             color="gray darken-1"
             text
-            @click="dialog = false"
+            @click="$emit('fechaModal')"
           >
             Cancelar
           </v-btn>
           <v-btn
             color="green darken-1"
             text
-            @click="dialog = false"
+            @click="dialog = true"
           >
             Salvar
           </v-btn>
